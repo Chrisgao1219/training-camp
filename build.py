@@ -134,10 +134,6 @@ pages = [
 - 在桌面建一个**专用文件夹**，给 AI 助理安个家
 - 打第一个招呼，并学会一个最基础的自动化「小技能（Skill）」
 
-## 板书
-
-[📋 第一课：极速上手 Claude Code](https://zcnt4sf6csbo.feishu.cn/wiki/W6O2w64qiiNFkTkJYObcVw5Tn3c)
-
 {VIDEO}
 
 ## 课后
@@ -156,10 +152,6 @@ pages = [
 - 像整理抽屉一样把你的**技能库**分类放好，通用技能随时随地一键调出
 - 核心概念「**规则文件** `CLAUDE.md`」——一张写给 AI 的"禁止犯错清单"
 - 解锁高阶操作：让一个 AI 变身成多人的「**虚拟团队（Agent Team）**」，分工合作干活
-
-## 板书
-
-[📋 第二课：Claude Code 高阶操作](https://zcnt4sf6csbo.feishu.cn/wiki/G3WCwlZGPi6tDkk0YYRcHxrfnih)
 
 {VIDEO}
 
@@ -195,10 +187,6 @@ pages = [
 - {link('⬇️ chrome-extension.zip', 'ZTBkN2NhNmI4OTIwNTkyODM4NTJhNWNlMDk3YTk2NDVfNWQ4NDUyOGEyNDNlOGVhZDhiZDFjZGEzMDUzZTM3YWZfSUQ6NzY2MDA5MjczNTY4NDk4ODA4OV8xNzg3OTAxNzE3OjE3ODc5MDUzMTdfVjM')}
 - {link('📄 训后作业说明.pdf', 'N2YwYzQ3N2JiMWFlMzhjN2MzYjRhYTQ4MjZmMTU5YTZfNzViY2E1NGY5Yzg4ODhhMzdiOWIwMzZiNzBlMDc1YjJfSUQ6NzY2MDA5MjczNzUyMTcwMDA2Ml8xNzg3OTAxNzE3OjE3ODc5MDUzMTdfVjM')}
 
-## 板书
-
-[📋 Claude code 实战1 - everything about skills](https://zcnt4sf6csbo.feishu.cn/wiki/Y5ZnbaYVImleYPnfFWbcZrydnCe)
-
 {VIDEO}
 
 ## 课后
@@ -224,10 +212,6 @@ pages = [
 
 完整复刻通过**唤醒 Skill** 的方式启动一次竞品价格监控的爬取过程，并把内容保存到飞书表格。
 
-## 板书
-
-![竞品价格监控完整流程](img/board/day3-board.png)
-
 {VIDEO}
 
 ## 课后
@@ -251,10 +235,6 @@ pages = [
 
 跑完整个工作流程后，在飞书表格里完整拿到红人信息，**截图提交**。
 
-## 板书
-
-![浏览器自动化工作流程](img/board/day4-board.png)
-
 {VIDEO}
 
 ## 课后
@@ -273,10 +253,6 @@ pages = [
 - 搞懂大模型和各种软件沟通的基本原理
 - 实战：**不写任何代码**，用大白话跟 AI 沟通，5 分钟内做出一套精美的多网页英文官方网站
 - 直接免费发布到互联网，让全世界都能通过网址访问
-
-## 板书
-
-[📋 Day 5: AI 工作流底层逻辑 & 全自动建站上线](https://zcnt4sf6csbo.feishu.cn/wiki/M0LawBc2XipIvAkvCJ5cCBBtnbe)
 
 {VIDEO}
 
@@ -304,10 +280,6 @@ Autoblog 自动写 SEO 文章工作流的 demo 项目，供大家研究：
 
 **安装咒语**：把这个文件直接拖到 Claude Code 的对话框里，然后说"请帮我安装这个 SEO 自动写文章的工作流，包括其中的 skill。如果在安装时需要提供任何信息，请告诉我，我会向你提供。"
 
-## 板书
-
-[📋 Day 6: 内容机器 - 社媒矩阵与 SEO 爆款文章 SOP](https://zcnt4sf6csbo.feishu.cn/wiki/HPAowj7nQiBXLvknce6cA0Einzh)
-
 {VIDEO}
 
 ## 课后
@@ -334,10 +306,6 @@ Autoblog 自动写 SEO 文章工作流的 demo 项目，供大家研究：
 - {link('⬇️ twitter-engage-pack.zip', 'Y2FkMTAxNWE4MGFkN2Y3MzdhZjQ0YWQzOWYzZDAyNWFfYTkwOTBhNTExY2UxODMxYjJhNzAzZWRkZGZjMTFkNTBfSUQ6NzY2MDA5MzMyNTkwMjc5Mzk3M18xNzg3OTAxNzE4OjE3ODc5MDUzMThfVjM')}
 
 **安装咒语**：把这个文件下载之后，直接拖到 Claude Code 的对话中，然后说"请帮我安装这个工作流包括其中的 skill，并跑一次测试。"
-
-## 板书
-
-[📋 Day 7: 终极接管 & 结营](https://zcnt4sf6csbo.feishu.cn/wiki/U9twwEKWsipmMhkd9AQc3UCAnfc)
 
 {VIDEO}
 
