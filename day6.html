@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 6: 内容机器 - 社媒矩阵与 SEO 爆款文章 SOP</title>
+<meta name="description" content="两种实用的内容生产套路，解决写文案的难题。">
+<script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<style>
+  :root {
+    --accent: #1e40af;
+    --accent-strong: #1e3a8a;
+    --accent-soft: #e8effc;
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #181b23;
+    --text-dim: #6b7280;
+    --border: #e4e7eb;
+    --border-strong: #cfd5dd;
+    --code-bg: #1b2130;
+    --code-text: #e8ecf4;
+    --shadow: 0 1px 2px rgba(15,23,42,.05);
+    --radius: 12px;
+  }
+  [data-theme="dark"] {
+    --accent: #60a5fa;
+    --accent-strong: #93c5fd;
+    --accent-soft: #15233c;
+    --bg: #10141c;
+    --card: #181e29;
+    --text: #e8ecf4;
+    --text-dim: #9aa4b3;
+    --border: #293140;
+    --border-strong: #3a4354;
+    --code-bg: #0c1017;
+    --code-text: #e8ecf4;
+    --shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+    letter-spacing: .01em;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* ===== 顶部栏 ===== */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--card) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner {
+    max-width: 980px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15.5px; letter-spacing: -.01em; white-space: nowrap; }
+  .logo .logo-mark { width: 22px; height: 22px; flex-shrink: 0; }
+  .logo .badge {
+    font-size: 10.5px; font-weight: 600; letter-spacing: .08em;
+    color: var(--accent); background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    padding: 2px 9px; border-radius: 999px;
+  }
+  .spacer { flex: 1; }
+  .icon-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text-dim);
+    border-radius: 9px; cursor: pointer; transition: color .2s, border-color .2s;
+  }
+  .icon-btn:hover { color: var(--text); border-color: var(--border-strong); }
+  [data-theme="light"] .icon-sun { display: none; }
+  [data-theme="dark"] .icon-moon { display: none; }
+  /* ===== 布局 ===== */
+  .layout {
+    max-width: 880px; margin: 0 auto; padding: 40px 24px 32px;
+  }
+  /* ===== 正文 ===== */
+  .content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px 56px;
+    box-shadow: var(--shadow);
+  }
+  .content h1 {
+    font-size: 30px; font-weight: 700; letter-spacing: -.02em;
+    line-height: 1.25; margin: 0 0 8px; color: var(--text);
+  }
+  .content h1 + p { color: var(--text-dim); font-size: 15px; margin: 0 0 8px; }
+  .content h2 {
+    font-size: 21px; font-weight: 700; letter-spacing: -.01em;
+    margin: 46px 0 14px; padding: 4px 0 4px 16px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.4;
+  }
+  .content h2:first-of-type { margin-top: 36px; }
+  .content h3 { font-size: 16.5px; font-weight: 650; margin: 28px 0 10px; color: var(--text); }
+  .content p { margin: 12px 0; }
+  .content ul, .content ol { padding-left: 24px; }
+  .content li { margin: 5px 0; }
+  .content strong { font-weight: 650; }
+  .content code {
+    background: var(--accent-soft); color: var(--accent-strong);
+    padding: 2px 6px; border-radius: 5px; font-size: 13.5px;
+    font-family: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace;
+  }
+  /* 代码块 */
+  pre {
+    position: relative; margin: 16px 0;
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+  }
+  pre code {
+    display: block; padding: 16px 18px; background: transparent; color: var(--code-text);
+    font-size: 13.5px; line-height: 1.65; overflow-x: auto;
+    font-family: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace;
+  }
+  pre .lang-tag {
+    position: absolute; top: 10px; right: 42px; font-size: 10.5px;
+    color: #8b8b93; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .copy-btn {
+    position: absolute; top: 8px; right: 8px; z-index: 2;
+    background: #2a2a30; color: #b8b8bf; border: 1px solid #3a3a42;
+    border-radius: 6px; padding: 3px 9px; font-size: 11.5px; cursor: pointer; opacity: 0; transition: opacity .2s;
+  }
+  pre:hover .copy-btn { opacity: 1; }
+  .copy-btn:hover { color: #fff; border-color: #8b8b93; }
+  /* 表格 */
+  .content table {
+    width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px;
+    display: block; overflow-x: auto;
+  }
+  .content th, .content td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+  .content th { background: var(--accent-soft); color: var(--text); font-weight: 600; font-size: 13px; }
+  .content tbody tr:nth-child(even) { background: var(--bg); }
+  /* 引用块（提示） */
+  .content blockquote {
+    margin: 18px 0; padding: 14px 18px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 14.5px; line-height: 1.7;
+  }
+  .content blockquote p { margin: 6px 0; }
+  /* ===== 软件下载卡片 ===== */
+  .sw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .sw-card {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    transition: border-color .18s ease, box-shadow .18s ease;
+  }
+  .sw-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    box-shadow: var(--shadow);
+  }
+  .sw-head { display: flex; align-items: center; gap: 13px; padding-right: 36px; }
+  .sw-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    background: var(--c, var(--accent));
+    color: #fff;
+  }
+  .sw-icon svg { width: 24px; height: 24px; display: block; }
+  .sw-name strong { display: block; font-size: 15.5px; font-weight: 650; line-height: 1.3; }
+  .sw-ver { font-size: 12.5px; color: var(--text-dim); }
+  .sw-dl { margin: 12px 0 4px; font-size: 13px; color: var(--text-dim); }
+  .sw-dl a { color: var(--accent); text-decoration: none; font-weight: 600; word-break: break-all; }
+  .sw-dl a:hover { text-decoration: underline; }
+  .sw-tip { margin: 0; font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .sw-step {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: .05em;
+    color: var(--text-dim);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+  /* ===== 图片画廊 ===== */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .gallery figure {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--card);
+    transition: border-color .18s ease;
+  }
+  .gallery figure:hover { border-color: var(--border-strong); }
+  .gallery img { width: 100%; height: auto; display: block; }
+  .gallery figcaption {
+    padding: 9px 12px;
+    font-size: 12.5px; color: var(--text-dim);
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+  /* 分隔线 */
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  /* 页脚 */
+  .footer { max-width: 880px; margin: 0 auto; padding: 20px 24px 56px; color: var(--text-dim); font-size: 13px; text-align: center; }
+  .footer a { color: var(--text-dim); }
+  /* 降级提示 */
+  .fallback { padding: 20px; }
+  /* ===== 打印 ===== */
+  @media print {
+    .topbar, .copy-btn { display: none !important; }
+    .layout { display: block; padding: 0; }
+    .content { border: none; box-shadow: none; padding: 0; }
+    pre { white-space: pre-wrap; }
+    body { font-size: 12px; }
+  }
+  /* ===== 移动端 ===== */
+  @media (max-width: 900px) {
+    .layout { padding: 24px 16px; }
+    .content { padding: 32px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6" fill="var(--accent)"/><text x="12" y="16.5" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" font-weight="800" fill="#fff">CC</text></svg>
+      <span>Claude Code 训练营</span>
+    </div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="themeToggle" title="切换明暗主题" aria-label="切换明暗主题">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+  <main class="content" id="content">
+    <noscript>请启用 JavaScript 以渲染本教程。</noscript>
+  </main>
+</div>
+
+<footer class="footer">
+  <a href="index.html">← 返回训练营目录</a> · Claude Code 训练营 · 生成于 2026-08-28
+</footer>
+
+<script type="text/markdown" id="mdContent">
+# Day 6: 内容机器 - 社媒矩阵与 SEO 爆款文章 SOP
+
+> 有了网站这个"基地"，接下来最重要的事情就是源源不断给网站带去流量。这节课把目光聚焦在"内容创作"上。
+
+## 本课内容
+
+- **套路一**：让 AI 学习行业高手的爆款文案风格，快速写出领英和推特文案，拒绝生硬的机器翻译感
+- **套路二**：更厉害的「5 步写文章大法」——AI 自己去谷歌搜集对手写了什么，找出盲点，补充最新最全的行业信息，写出一篇有深度、容易被谷歌收录的高质量文章
+
+## 附赠
+
+Autoblog 自动写 SEO 文章工作流的 demo 项目，供大家研究：
+
+- [⬇️ autoblog_v3_demo.zip](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YWEwZTM1MmE0ZThiNzgyYWRmZGIzMzU1NjcyOTcxYmVfYWVhYzUxZDkxNWQ3ODE2NTdiOGRmMjllOTFiMWVmNjZfSUQ6NzY2MDA5MzEzMjY1OTI2NDczNV8xNzg3OTAxNzE5OjE3ODc5MDUzMTlfVjM)
+
+**安装咒语**：把这个文件直接拖到 Claude Code 的对话框里，然后说"请帮我安装这个 SEO 自动写文章的工作流，包括其中的 skill。如果在安装时需要提供任何信息，请告诉我，我会向你提供。"
+
+## 板书
+
+[📋 Day 6: 内容机器 - 社媒矩阵与 SEO 爆款文章 SOP](https://zcnt4sf6csbo.feishu.cn/wiki/HPAowj7nQiBXLvknce6cA0Einzh)
+
+📹 **课程视频**（视频文件待添加，稍后嵌入）。
+
+> 💡 视频由训练营提供，收到视频文件后本页会直接内嵌播放器。
+
+## 课后
+
+按顺序学习，并在群里完成作业并打卡。
+</script>
+
+<script>
+(function () {
+  const mdEl = document.getElementById('mdContent');
+  const contentEl = document.getElementById('content');
+  const raw = mdEl.textContent.trim();
+
+  const render = typeof window.marked !== 'undefined' ? window.marked.parse : null;
+  if (!render) {
+    contentEl.innerHTML = '<div class="fallback"><strong>CDN 加载失败（需联网）</strong><pre>' +
+      raw.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</pre></div>';
+    return;
+  }
+
+  // marked 配置
+  marked.setOptions({ gfm: true, breaks: false });
+
+  // 渲染正文
+  contentEl.innerHTML = render(raw);
+
+  // 代码高亮 + 复制按钮
+  document.querySelectorAll('pre code').forEach(function (codeEl) {
+    var lang = '';
+    var cls = codeEl.className.match(/language-(\w+)/);
+    if (cls) lang = cls[1];
+    var pre = codeEl.parentElement;
+    if (lang) {
+      var tag = document.createElement('span');
+      tag.className = 'lang-tag';
+      tag.textContent = lang;
+      pre.appendChild(tag);
+    }
+    if (window.hljs) {
+      try { hljs.highlightElement(codeEl); } catch (e) {}
+    }
+    var btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = '复制';
+    btn.onclick = function () {
+      var text = codeEl.innerText;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = '已复制 ✓'; setTimeout(function () { btn.textContent = '复制'; }, 1500);
+        });
+      } else {
+        var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        btn.textContent = '已复制 ✓'; setTimeout(function () { btn.textContent = '复制'; }, 1500);
+      }
+    };
+    pre.appendChild(btn);
+  });
+
+  // 明暗主题切换（图标由 CSS 控制显隐）
+  var themeToggle = document.getElementById('themeToggle');
+  var saved = localStorage.getItem('cc-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  themeToggle.addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', cur);
+    localStorage.setItem('cc-theme', cur);
+  });
+
+})();
+</script>
+</body>
+</html>
