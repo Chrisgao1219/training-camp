@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Claude Code 训练营</title>
-<meta name="description" content="Claude Code 训练营总目录：Day0-Day7，从安装预热到无人值守运营，按顺序学，每天作业打卡。">
+<meta name="description" content="公司内部培训资料：Claude Code 训练营 Day0-Day7，从安装预热到无人值守运营，按顺序学习，群里作业打卡。">
 <style>
   :root {
     --accent: #1e40af;
@@ -55,6 +56,20 @@
   }
   [data-theme="light"] .icon-sun { display: none; }
   [data-theme="dark"] .icon-moon { display: none; }
+
+  /* 姊妹站点互跳 */
+  .site-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text-dim);
+    border-radius: 999px; font-size: 13px; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+    transition: color .18s, border-color .18s;
+  }
+  .site-link:hover { color: var(--text); border-color: var(--border-strong); }
+  .site-link .site-link-mark { font-size: 14px; line-height: 1; }
+  .site-link svg { transition: transform .18s; flex-shrink: 0; }
+  .site-link:hover svg { transform: translateX(2px); }
   .hero { max-width: 1000px; margin: 0 auto; padding: 56px 24px 8px; text-align: center; }
   .hero .eyebrow {
     display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
@@ -89,6 +104,8 @@
     .hero { padding: 40px 20px 6px; }
     .hero h1 { font-size: 28px; }
     .grid { padding: 20px 16px; grid-template-columns: 1fr; }
+    .site-link { padding: 7px 11px; }
+    .site-link .site-link-label { display: none; }
   }
 </style>
 </head>
@@ -101,6 +118,16 @@
       <span>Claude Code 训练营</span>
     </div>
     <div class="spacer"></div>
+    <a class="site-link" href="https://ai.chrisgao1219.com/">
+      <span class="site-link-mark">🎓</span>
+      <span class="site-link-label">AI 学习中心</span>
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="site-link" href="https://ads.chrisgao1219.com/">
+      <span class="site-link-mark">🎯</span>
+      <span class="site-link-label">广告学习中心</span>
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
     <button class="icon-btn" id="themeToggle" title="切换明暗主题">
       <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -110,9 +137,9 @@
 
 <main>
   <section class="hero">
-    <span class="eyebrow">Claude Code 训练营</span>
+    <span class="eyebrow">公司内部培训</span>
     <h1>从零到无人值守运营</h1>
-    <p>请按照顺序学习，并在群里完成作业并打卡。推荐顺序学习，不要贪多，每天多次观看、熟练掌握。最后会越来越轻松。</p>
+    <p>内部学习资料，请按顺序学习，并在群里完成作业打卡。不要贪多，每天多次观看、熟练掌握，后面会越来越轻松。</p>
   </section>
 
   <section class="grid">
@@ -183,7 +210,7 @@
 </main>
 
 <footer class="footer">
-  <a href="https://ai.chrisgao1219.com/">AI 学习中心</a> · Claude Code 训练营 · 生成于 2026-08-28
+  公司内部培训资料 · <a href="https://ai.chrisgao1219.com/">AI 学习中心</a> · Claude Code 训练营
 </footer>
 
 <script>
