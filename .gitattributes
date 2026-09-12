@@ -1,0 +1,9 @@
+# 统一用 LF，避免 Windows 下 HTML / JS 被转成 CRLF
+* text=auto eol=lf
+
+# 二进制与第三方压缩库（不做行尾转换）
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.ico binary
+vendor/*.min.js -text
