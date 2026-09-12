@@ -84,9 +84,31 @@ COLOR_NEW = '''  :root {
     --shadow: 0 1px 2px rgba(0,0,0,.4);
   }'''
 
-VIDEO = '''📹 **课程视频**（视频文件待添加，稍后嵌入）。
+# 各课视频（Google Drive 文件 ID）—— 与页面一一对应，day0 无视频
+VIDEO_FRAME = '''## 课程视频
 
-> 💡 视频由训练营提供，收到视频文件后本页会直接内嵌播放器。'''
+<iframe src="https://drive.google.com/file/d/%s/preview" style="width:100%%;aspect-ratio:16/9;border:0;border-radius:10px" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'''
+
+class _VideoDict(dict):
+    """缺条目时给出明确指引，而不是抛出难懂的 KeyError"""
+    def __missing__(self, key):
+        raise SystemExit(
+            '✗ VIDEO 字典缺少 %s 的视频 ID。\n'
+            '  请在 build.py 的 VIDEO 字典中补上该页对应的 Google Drive 文件 ID，'
+            '否则该页会生成成没有视频的版本。' % key)
+
+VIDEO = _VideoDict()
+for _k, _v in {
+    'day1-1': '1ziZB4UJED_jmulq4qsTgknsnJZ3siwIv',
+    'day1-2': '1nNCUC9P57_is85BkvARKMpwo4j3AF-_x',
+    'day2':   '1TOQMnO2l1klN4abFo-BdZAJB4Qk_h6yc',
+    'day3':   '1K6SnL7E9MtbvGjVQAqgzLQAfN-2ArUTB',
+    'day4':   '1PEZ9EHGg5och3iXG37gUVHLOb47Nvw_D',
+    'day5':   '1nWhkK-ikVCq7HSaVG_v46beR0N-m7F16',
+    'day6':   '14eu9DnrdVmhAReGzt-NHq7By8qhXrOsI',
+    'day7':   '13MoywdZfh67_E1n4BeA4VrDjMawC3s-O',
+}.items():
+    VIDEO[_k] = VIDEO_FRAME % _v
 
 # ===== 训练营专用注入（不改模板，避免影响对外的安装指南页）=====
 # 1) 内部资料标记：禁止搜索引擎收录 + 站点图标
@@ -166,7 +188,7 @@ pages = [
 - 在桌面建一个**专用文件夹**，给 AI 助理安个家
 - 打第一个招呼，并学会一个最基础的自动化「小技能（Skill）」
 
-{VIDEO}
+{VIDEO["day1-1"]}
 
 ## 课后
 
@@ -185,7 +207,7 @@ pages = [
 - 核心概念「**规则文件** `CLAUDE.md`」——一张写给 AI 的"禁止犯错清单"
 - 解锁高阶操作：让一个 AI 变身成多人的「**虚拟团队（Agent Team）**」，分工合作干活
 
-{VIDEO}
+{VIDEO["day1-2"]}
 
 ## 课后
 
@@ -219,7 +241,7 @@ pages = [
 - {link('⬇️ chrome-extension.zip', 'ZTBkN2NhNmI4OTIwNTkyODM4NTJhNWNlMDk3YTk2NDVfNWQ4NDUyOGEyNDNlOGVhZDhiZDFjZGEzMDUzZTM3YWZfSUQ6NzY2MDA5MjczNTY4NDk4ODA4OV8xNzg3OTAxNzE3OjE3ODc5MDUzMTdfVjM')}
 - {link('📄 训后作业说明.pdf', 'N2YwYzQ3N2JiMWFlMzhjN2MzYjRhYTQ4MjZmMTU5YTZfNzViY2E1NGY5Yzg4ODhhMzdiOWIwMzZiNzBlMDc1YjJfSUQ6NzY2MDA5MjczNzUyMTcwMDA2Ml8xNzg3OTAxNzE3OjE3ODc5MDUzMTdfVjM')}
 
-{VIDEO}
+{VIDEO["day2"]}
 
 ## 课后
 
@@ -244,7 +266,7 @@ pages = [
 
 完整复刻通过**唤醒 Skill** 的方式启动一次竞品价格监控的爬取过程，并把内容保存到飞书表格。
 
-{VIDEO}
+{VIDEO["day3"]}
 
 ## 课后
 
@@ -267,7 +289,7 @@ pages = [
 
 跑完整个工作流程后，在飞书表格里完整拿到红人信息，**截图提交**。
 
-{VIDEO}
+{VIDEO["day4"]}
 
 ## 课后
 
@@ -286,7 +308,7 @@ pages = [
 - 实战：**不写任何代码**，用大白话跟 AI 沟通，5 分钟内做出一套精美的多网页英文官方网站
 - 直接免费发布到互联网，让全世界都能通过网址访问
 
-{VIDEO}
+{VIDEO["day5"]}
 
 ## 课后
 
@@ -312,7 +334,7 @@ Autoblog 自动写 SEO 文章工作流的 demo 项目，供大家研究：
 
 **安装咒语**：把这个文件直接拖到 Claude Code 的对话框里，然后说"请帮我安装这个 SEO 自动写文章的工作流，包括其中的 skill。如果在安装时需要提供任何信息，请告诉我，我会向你提供。"
 
-{VIDEO}
+{VIDEO["day6"]}
 
 ## 课后
 
@@ -339,7 +361,7 @@ Autoblog 自动写 SEO 文章工作流的 demo 项目，供大家研究：
 
 **安装咒语**：把这个文件下载之后，直接拖到 Claude Code 的对话中，然后说"请帮我安装这个工作流包括其中的 skill，并跑一次测试。"
 
-{VIDEO}
+{VIDEO["day7"]}
 
 ## 课后
 
@@ -364,11 +386,14 @@ for fn, title, desc, md in pages:
     end = content.index('</script>', start) + len('</script>')
     content = content[:start] + '<script type="text/markdown" id="mdContent">\n' + md.strip() + '\n</script>' + content[end:]
 
-    # 校验：模板若变动导致替换失效，这里直接报错，避免静默生成出错的页面
+    # 校验：任何一项没生效就直接报错，避免静默生成出错的页面
     for kw, desc_ in [('noindex', 'noindex'), ('vendor/marked.min.js', 'marked 本地化'),
                       ('vendor/highlight.min.js', 'highlight 本地化'), ("localStorage.getItem('camp-theme')", '主题预设')]:
         if kw not in content:
             raise SystemExit('✗ %s 注入失败：模板中未找到对应片段（%s）' % (fn, desc_))
+    # 除 day0 外每页都必须带课程视频（防止 VIDEO 占位符把视频覆盖掉）
+    if fn != 'day0.html' and 'drive.google.com/file/d/' not in content:
+        raise SystemExit('✗ %s 缺少课程视频：VIDEO 字典可能没有该页的条目' % fn)
 
     io.open(os.path.join(BASE, fn), 'w', encoding='utf-8').write(content)
     print('生成', fn)
