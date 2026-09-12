@@ -395,6 +395,6 @@ for fn, title, desc, md in pages:
     if fn != 'day0.html' and 'drive.google.com/file/d/' not in content:
         raise SystemExit('✗ %s 缺少课程视频：VIDEO 字典可能没有该页的条目' % fn)
 
-    io.open(os.path.join(BASE, fn), 'w', encoding='utf-8').write(content)
+    io.open(os.path.join(BASE, fn), 'w', encoding='utf-8', newline='\n').write(content)
     print('生成', fn)
 print('全部完成')
