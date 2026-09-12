@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <title>Day0 - Claude Code 预热教程</title>
 <meta name="description" content="训练营第一课：把 Claude Code 跑通。">
-<script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.2/marked.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/highlight.min.js"></script>
 <style>
   :root {
     --accent: #1e40af;
@@ -238,6 +242,17 @@
     .content { padding: 32px 22px; }
   }
 </style>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('camp-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 

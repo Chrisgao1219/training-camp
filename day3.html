@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <title>Day3 - 和飞书表格的联动和数据抓取</title>
 <meta name="description" content="在 Skill 封装基础上更进一步，接入飞书能力。">
-<script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.2/marked.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/highlight.min.js"></script>
 <style>
   :root {
     --accent: #1e40af;
@@ -238,6 +242,17 @@
     .content { padding: 32px 22px; }
   }
 </style>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('camp-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 
@@ -282,9 +297,9 @@
 
 完整复刻通过**唤醒 Skill** 的方式启动一次竞品价格监控的爬取过程，并把内容保存到飞书表格。
 
-## 课程视频
+📹 **课程视频**（视频文件待添加，稍后嵌入）。
 
-<iframe src="https://drive.google.com/file/d/1K6SnL7E9MtbvGjVQAqgzLQAfN-2ArUTB/preview" style="width:100%;aspect-ratio:16/9;border:0;border-radius:10px" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+> 💡 视频由训练营提供，收到视频文件后本页会直接内嵌播放器。
 
 ## 课后
 

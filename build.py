@@ -88,6 +88,38 @@ VIDEO = '''📹 **课程视频**（视频文件待添加，稍后嵌入）。
 
 > 💡 视频由训练营提供，收到视频文件后本页会直接内嵌播放器。'''
 
+# ===== 训练营专用注入（不改模板，避免影响对外的安装指南页）=====
+# 1) 内部资料标记：禁止搜索引擎收录 + 站点图标
+VIEWPORT_OLD = '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+VIEWPORT_NEW = '''<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">'''
+
+# 2) 依赖本地化：不再依赖 bootcdn
+CDN_OLD = [
+    ('<script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.2/marked.min.js"></script>',
+     '<script src="vendor/marked.min.js"></script>'),
+    ('<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>',
+     '<script src="vendor/highlight.min.js"></script>'),
+]
+
+# 3) 主题预设：在首次绘制前定下明暗，消除深色模式闪白
+THEME_OLD = '</head>'
+THEME_NEW = '''<script>
+(function () {
+  try {
+    var t = localStorage.getItem('camp-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+</head>'''
+
 def link(name, code, ext=''):
     return '[%s](%s%s)' % (name, DL, code)
 
@@ -321,9 +353,23 @@ for fn, title, desc, md in pages:
     content = content.replace(COLOR_OLD, COLOR_NEW)
     content = content.replace(LOGO_OLD, LOGO_NEW)
     content = content.replace(FOOTER_OLD, FOOTER_NEW)
+
+    # 训练营专用注入
+    content = content.replace(VIEWPORT_OLD, VIEWPORT_NEW)
+    for old, new in CDN_OLD:
+        content = content.replace(old, new)
+    content = content.replace(THEME_OLD, THEME_NEW)
+
     start = content.index('<script type="text/markdown" id="mdContent">')
     end = content.index('</script>', start) + len('</script>')
     content = content[:start] + '<script type="text/markdown" id="mdContent">\n' + md.strip() + '\n</script>' + content[end:]
+
+    # 校验：模板若变动导致替换失效，这里直接报错，避免静默生成出错的页面
+    for kw, desc_ in [('noindex', 'noindex'), ('vendor/marked.min.js', 'marked 本地化'),
+                      ('vendor/highlight.min.js', 'highlight 本地化'), ("localStorage.getItem('camp-theme')", '主题预设')]:
+        if kw not in content:
+            raise SystemExit('✗ %s 注入失败：模板中未找到对应片段（%s）' % (fn, desc_))
+
     io.open(os.path.join(BASE, fn), 'w', encoding='utf-8').write(content)
     print('生成', fn)
 print('全部完成')

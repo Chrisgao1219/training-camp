@@ -6,6 +6,24 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Claude Code 训练营</title>
 <meta name="description" content="公司内部培训资料：Claude Code 训练营 Day0-Day7，从安装预热到无人值守运营，按顺序学习，群里作业打卡。">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<!-- 主题预设：在首次绘制前定下明暗，避免深色模式闪白 -->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('camp-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+
 <style>
   :root {
     --accent: #1e40af;
